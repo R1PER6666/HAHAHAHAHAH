@@ -61,22 +61,25 @@
         const scareImage = document.getElementById("scareImage");
         const screamSound = document.getElementById("screamSound");
 
-        document.addEventListener("click", () => {
-            // Включение полноэкранного режима
-            const { documentElement } = document;
-            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
-            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
-            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
-            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+        window.onload = function() {
+            // Устанавливаем громкость звука на максимальное значение
+            screamSound.volume = 1;  // Максимальная громкость (от 0 до 1)
 
-            // Задержка перед скримером
+            // Задержка перед скримером и эффектами (1 секунда)
             setTimeout(() => {
-                video.style.display = "none"; // Убираем видео
-                scareImage.style.display = "block"; // Показываем изображение
-                screamSound.play(); // Воспроизводим звук
-                document.body.classList.add("flash"); // Анимация вспышек
-            }, 3000); // Скример через 3 секунды
-        });
+                // Показать изображение скримера
+                scareImage.style.display = "block";
+
+                // Воспроизвести звук
+                screamSound.play();
+
+                // Включить анимацию мигающего фона
+                document.body.classList.add("flash");
+
+                // Скрыть видео
+                video.style.display = "none"; 
+            }, 1000); // Всё это произойдёт через 1 секунду после загрузки страницы
+        };
     </script>
 </body>
 </html>
