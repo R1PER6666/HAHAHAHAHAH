@@ -4,7 +4,7 @@ body {
     background-color: #005EFF;
     color: white;
     text-align: center;
-    background-image: url('path_to_your_background_image.jpg'); /* Укажите путь к вашему фону */
+    background-image: url('assets/path_to_your_background_image.jpg'); /* Укажите путь к вашему фону */
     background-size: cover;
 }
 
