@@ -3,102 +3,157 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Скример</title>
+    <title>Забрать подарок в Brawl Stars</title>
     <style type="text/css">
+        /* Обнуление отступов */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 0;
             height: 100vh;
             width: 100vw;
-            background-color: blue; /* Синий фон */
+            background-color: #1b1b1b; /* Темный фон, как на страницах Brawl Stars */
+            color: white;
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             overflow: hidden;
         }
 
-        #startButton {
-            padding: 20px 40px;
-            font-size: 30px;
-            background-color: red; /* Красная кнопка */
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
+        /* Оформление контейнера */
+        .content {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
         }
 
-        /* Эффект мигающего фона */
+        h1 {
+            font-size: 36px;
+            color: #ffcc00; /* Желтый цвет, похожий на цвет на страницах Brawl Stars */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #dddddd;
+            margin-bottom: 30px;
+        }
+
+        /* Кнопка с анимацией */
+        #claimButton {
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #ff5c00; /* Оранжевая кнопка */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #claimButton:hover {
+            transform: scale(1.1); /* Увеличение кнопки при наведении */
+        }
+
+        #claimButton:active {
+            transform: scale(0.9); /* Сжатие кнопки при нажатии */
+        }
+
+        /* Эффект анимации фона */
         @keyframes flash {
-            0%, 100% { background-color: blue; }
-            50% { background-color: red; }
+            0% { background-color: #1b1b1b; }
+            50% { background-color: #ff5c00; }
+            100% { background-color: #1b1b1b; }
         }
 
         .flash {
-            animation: flash 0.1s infinite alternate;
+            animation: flash 1s infinite alternate;
         }
 
-        /* Для мобильных устройств */
+        /* Мобильная версия: уменьшаем размер текста и кнопки */
         @media (max-width: 768px) {
-            #startButton {
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            #claimButton {
                 font-size: 20px;
+                padding: 12px 25px;
             }
         }
 
-        /* Для десктопа */
-        @media (min-width: 769px) {
-            #startButton {
-                font-size: 30px;
-            }
+        /* Стиль для скримера */
+        #scareImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            object-fit: cover;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
-    <button id="startButton">не нажмешь-сын шлюхи</button>
-    
+    <div class="content">
+        <h1>Поздравляем, у вас есть подарок!</h1>
+        <p>Нажмите на кнопку ниже, чтобы забрать свой подарок и получить крутой пин в игре!</p>
+        <!-- Кнопка для получения подарка -->
+        <button id="claimButton">Забрать подарок</button>
+    </div>
+
+    <!-- Скример и звук -->
     <div class="scare">
-        <img id="scareImage" src="media/scare.png" alt="Scare Image" style="display:none; position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; object-fit: cover;">
+        <img id="scareImage" src="media/scare.png" alt="Scare Image">
         <audio id="screamSound" src="media/scream.mp3" preload="auto"></audio>
     </div>
 
     <script type="text/javascript">
-        const startButton = document.getElementById("startButton");
+        const claimButton = document.getElementById("claimButton");
         const scareImage = document.getElementById("scareImage");
         const screamSound = document.getElementById("screamSound");
 
         // Устанавливаем громкость звука на максимальное значение
         screamSound.volume = 1;  // Максимальная громкость
 
-        // Функция для центрирования кнопки
-        function centerButton() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            startButton.style.left = `${screenWidth / 2 - startButton.offsetWidth / 2}px`;
-            startButton.style.top = `${screenHeight / 2 - startButton.offsetHeight / 2}px`;
+        // Функция для включения мигающего эффекта фона
+        function startFlash() {
+            document.body.classList.add("flash");
         }
 
-        // Центрируем кнопку при загрузке страницы
-        window.onload = centerButton;
+        // Обработчик клика по кнопке
+        claimButton.addEventListener("click", function() {
+            // Скрыть кнопку, чтобы показать, что подарок был забран
+            claimButton.style.display = "none";
+            
+            // Показать анимацию мигающего фона
+            startFlash();
 
-        // При изменении размера окна снова центрируем кнопку
-        window.onresize = centerButton;
-
-        // Обработчик нажатия на кнопку
-        startButton.addEventListener("click", function() {
-            // Скрываем кнопку
-            startButton.style.display = "none";
-
-            // Показать изображение скримера
+            // Показать скример
             scareImage.style.display = "block";
 
             // Воспроизвести звук
             screamSound.play();
 
-            // Включить мигающий фон
-            document.body.classList.add("flash");
+            // Добавить задержку перед скрытием скримера
+            setTimeout(() => {
+                scareImage.style.display = "none"; // Скрыть скример после 2 секунд
+                document.body.classList.remove("flash"); // Убрать мигающий фон
+            }, 2000);
+
+            // Отображение всплывающего сообщения через 1 секунду
+            setTimeout(() => {
+                alert("Поздравляем! Подарок успешно забран!");
+            }, 1000);
         });
     </script>
 </body>
