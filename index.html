@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>огромная жопа негра смотреть</title>
+    <style type="text/css">
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .scare {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        video#video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        img#scareImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            object-fit: cover;
+            z-index: 10;
+        }
+
+        @keyframes flash {
+            0%, 100% { background-color: black; }
+            50% { background-color: red; }
+        }
+
+        .flash {
+            animation: flash 0.1s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="scare">
+        <video id="video" class="video" src="media/video.mp4" autoplay muted loop></video>
+        <img id="scareImage" src="media/scare.png" alt="Scare Image">
+        <audio id="screamSound" src="media/scream.mp3" preload="auto"></audio>
+    </div>
+    <script type="text/javascript">
+        const video = document.getElementById("video");
+        const scareImage = document.getElementById("scareImage");
+        const screamSound = document.getElementById("screamSound");
+
+        document.addEventListener("click", () => {
+            // Включение полноэкранного режима
+            const { documentElement } = document;
+            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
+            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+
+            // Задержка перед скримером
+            setTimeout(() => {
+                video.style.display = "none"; // Убираем видео
+                scareImage.style.display = "block"; // Показываем изображение
+                screamSound.play(); // Воспроизводим звук
+                document.body.classList.add("flash"); // Анимация вспышек
+            }, 3000); // Скример через 3 секунды
+        });
+    </script>
+</body>
+</html>
