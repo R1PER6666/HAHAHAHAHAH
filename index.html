@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>огромная жопа негра смотреть</title>
+    <title>Скример</title>
     <style type="text/css">
         *, *::before, *::after {
             box-sizing: border-box;
@@ -11,92 +11,94 @@
 
         body {
             margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: blue; /* Синий фон */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            background-color: black;
-        }
-
-        .scare {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        video#video {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        img#scareImage {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-            object-fit: cover;
-            z-index: 10;
         }
 
         #startButton {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             padding: 20px 40px;
-            font-size: 20px;
-            background-color: #ff0000;
+            font-size: 30px;
+            background-color: red; /* Красная кнопка */
             color: white;
             border: none;
             cursor: pointer;
-            z-index: 20;
+            z-index: 10;
         }
 
+        /* Эффект мигающего фона */
         @keyframes flash {
-            0%, 100% { background-color: black; }
+            0%, 100% { background-color: blue; }
             50% { background-color: red; }
         }
 
         .flash {
             animation: flash 0.1s infinite alternate;
         }
+
+        /* Для мобильных устройств */
+        @media (max-width: 768px) {
+            #startButton {
+                font-size: 20px;
+            }
+        }
+
+        /* Для десктопа */
+        @media (min-width: 769px) {
+            #startButton {
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button id="startButton">не нажмешь-сын шлюхи</button>
+    
     <div class="scare">
-        <video id="video" class="video" src="media/video.mp4" autoplay loop></video>
-        <img id="scareImage" src="media/scare.png" alt="Scare Image">
+        <img id="scareImage" src="media/scare.png" alt="Scare Image" style="display:none; position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; object-fit: cover;">
         <audio id="screamSound" src="media/scream.mp3" preload="auto"></audio>
     </div>
-    <!-- Кнопка для запуска скримера -->
-    <button id="startButton">Начать!</button>
 
     <script type="text/javascript">
         const startButton = document.getElementById("startButton");
         const scareImage = document.getElementById("scareImage");
         const screamSound = document.getElementById("screamSound");
-        const video = document.getElementById("video");
 
         // Устанавливаем громкость звука на максимальное значение
         screamSound.volume = 1;  // Максимальная громкость
 
+        // Функция для центрирования кнопки
+        function centerButton() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            startButton.style.left = `${screenWidth / 2 - startButton.offsetWidth / 2}px`;
+            startButton.style.top = `${screenHeight / 2 - startButton.offsetHeight / 2}px`;
+        }
+
+        // Центрируем кнопку при загрузке страницы
+        window.onload = centerButton;
+
+        // При изменении размера окна снова центрируем кнопку
+        window.onresize = centerButton;
+
+        // Обработчик нажатия на кнопку
         startButton.addEventListener("click", function() {
             // Скрываем кнопку
             startButton.style.display = "none";
-            
+
             // Показать изображение скримера
             scareImage.style.display = "block";
-            
+
             // Воспроизвести звук
             screamSound.play();
-            
-            // Включить анимацию мигающего фона
+
+            // Включить мигающий фон
             document.body.classList.add("flash");
-            
-            // Скрыть видео
-            video.style.display = "none"; 
         });
     </script>
 </body>
