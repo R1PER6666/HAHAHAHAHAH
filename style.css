@@ -4,10 +4,14 @@ body {
     background-color: #005EFF;
     color: white;
     text-align: center;
+    background-image: url('path_to_your_background_image.jpg'); /* Укажите путь к вашему фону */
+    background-size: cover;
 }
 
 .container {
     padding: 20px;
+    max-width: 400px;
+    margin: 0 auto; /* Центрирование по горизонтали */
 }
 
 h1 {
@@ -37,6 +41,7 @@ h1 {
     background-color: black;
     color: white;
     padding: 10px;
+    text-align: center;
 }
 
 .footer a {
