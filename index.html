@@ -40,6 +40,20 @@
             z-index: 10;
         }
 
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 20px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 20;
+        }
+
         @keyframes flash {
             0%, 100% { background-color: black; }
             50% { background-color: red; }
@@ -56,30 +70,34 @@
         <img id="scareImage" src="media/scare.png" alt="Scare Image">
         <audio id="screamSound" src="media/scream.mp3" preload="auto"></audio>
     </div>
+    <!-- Кнопка для запуска скримера -->
+    <button id="startButton">Начать!</button>
+
     <script type="text/javascript">
-        const video = document.getElementById("video");
+        const startButton = document.getElementById("startButton");
         const scareImage = document.getElementById("scareImage");
         const screamSound = document.getElementById("screamSound");
+        const video = document.getElementById("video");
 
-        window.onload = function() {
-            // Устанавливаем громкость звука на максимальное значение
-            screamSound.volume = 1;  // Максимальная громкость (от 0 до 1)
+        // Устанавливаем громкость звука на максимальное значение
+        screamSound.volume = 1;  // Максимальная громкость
 
-            // Задержка перед скримером и эффектами (1 секунда)
-            setTimeout(() => {
-                // Показать изображение скримера
-                scareImage.style.display = "block";
-
-                // Воспроизвести звук
-                screamSound.play();
-
-                // Включить анимацию мигающего фона
-                document.body.classList.add("flash");
-
-                // Скрыть видео
-                video.style.display = "none"; 
-            }, 1000); // Всё это произойдёт через 1 секунду после загрузки страницы
-        };
+        startButton.addEventListener("click", function() {
+            // Скрываем кнопку
+            startButton.style.display = "none";
+            
+            // Показать изображение скримера
+            scareImage.style.display = "block";
+            
+            // Воспроизвести звук
+            screamSound.play();
+            
+            // Включить анимацию мигающего фона
+            document.body.classList.add("flash");
+            
+            // Скрыть видео
+            video.style.display = "none"; 
+        });
     </script>
 </body>
 </html>
