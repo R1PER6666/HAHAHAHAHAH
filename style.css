@@ -12,6 +12,10 @@ body {
     padding: 20px;
     max-width: 400px;
     margin: 0 auto; /* Центрирование по горизонтали */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh; /* Высота 100% экрана */
 }
 
 h1 {
@@ -26,8 +30,10 @@ h1 {
     padding: 15px 30px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 10px; /* Закругленные углы */
     cursor: pointer;
+    margin-bottom: 10px; /* Меньше расстояние между кнопками */
+    width: 100%; /* Кнопка по всей ширине */
 }
 
 .button:hover {
