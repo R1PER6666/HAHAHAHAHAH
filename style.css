@@ -1,10 +1,10 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Используем другой шрифт */
     background-color: #005EFF;
     color: white;
     text-align: center;
-    background-image: url('assets/fon.jpg'); /* Укажите путь к вашему фону */
+    background-image: url('assets/path_to_your_background_image.jpg'); /* Укажите путь к вашему фону */
     background-size: cover;
 }
 
@@ -27,17 +27,35 @@ h1 {
     background-color: #FFD500;
     color: black;
     border: none;
-    padding: 15px 30px;
+    padding: 15px 40px; /* Увеличение ширины кнопки */
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px; /* Закругленные углы */
     cursor: pointer;
-    margin-bottom: 10px; /* Меньше расстояние между кнопками */
     width: 100%; /* Кнопка по всей ширине */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Легкая тень */
 }
 
 .button:hover {
     background-color: #FFC107;
+}
+
+.playstore-button {
+    background-color: #3DDC84; /* Цвет кнопки */
+    color: white;
+    border: none;
+    padding: 10px 30px; /* Увеличение padding для лучшего отображения */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px; /* Меньшие закругленные углы */
+    cursor: pointer;
+    width: 100%; /* Кнопка по всей ширине */
+    margin-top: 10px; /* Положение ниже кнопки "Получить награду" */
+}
+
+.playstore-button img {
+    vertical-align: middle; /* Выравнивание изображения по вертикали */
+    margin-right: 10px; /* Между изображением и текстом */
 }
 
 .footer {
